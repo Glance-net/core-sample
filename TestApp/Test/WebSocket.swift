@@ -11,11 +11,53 @@ import GlanceCore
 final class GlanceWebSocket: NSObject {
     
     public var isConnected = false
+    public var keepAlive = false
+    public var isInBackground = false
     
     private var webSocket : URLSessionWebSocketTask?
     private var initParams: GlanceVisitorInitParams?
     private var receiveThread: DispatchWorkItem?
     private var reconnectThread: DispatchWorkItem?
+    
+    override init() {
+        super.init()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func appDidEnterBackground() {
+        isInBackground = true
+        
+        DispatchQueue.main.async {
+            GlancePresenceVisitor.disconnect()
+        }
+        
+        disconnect(keepAlive: true)
+    }
+    
+    @objc private func appDidBecomeActive() {
+        isInBackground = false
+        
+        if keepAlive {
+            reconnect()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     func setup(startParams: GlanceVisitorInitParams) {
         self.initParams = startParams
@@ -38,7 +80,7 @@ final class GlanceWebSocket: NSObject {
         }
     }
     
-    func disconnect() {
+    func disconnect(keepAlive: Bool = false) {
         DispatchQueue.global().async { [weak self] in
             self?.receiveThread?.cancel()
             self?.receiveThread = nil
@@ -46,6 +88,7 @@ final class GlanceWebSocket: NSObject {
             self?.closeSession()
             self?.webSocket = nil
             self?.isConnected = false
+            self?.keepAlive = keepAlive
             self?.reconnectThread?.cancel()
         }
     }
@@ -87,7 +130,10 @@ extension GlanceWebSocket: URLSessionWebSocketDelegate {
         receiveThread = DispatchWorkItem{ [weak self] in
             
             self?.webSocket?.receive(completionHandler: { [weak self] result in
-                GlancePresenceVisitor.connect(GlanceManager.shared, maxAttempts: -1)
+                DispatchQueue.main.async {
+                    GlancePresenceVisitor.connect(GlanceManager.shared, maxAttempts: -1)
+                }
+                
                 switch result {
                 case .success(let message):
                     
@@ -172,7 +218,7 @@ extension GlanceWebSocket: URLSessionWebSocketDelegate {
     }
     
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
-        if isConnected {
+        if isConnected && !isInBackground {
             isConnected = false
             reconnect()
         }

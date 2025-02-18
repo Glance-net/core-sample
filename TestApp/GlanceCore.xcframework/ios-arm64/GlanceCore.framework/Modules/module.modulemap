@@ -1,0 +1,6 @@
+framework module GlanceCore {
+  umbrella header "GlanceCore.h"
+
+  export *
+  module * { export * }
+}

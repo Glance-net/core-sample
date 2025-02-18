@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GlanceFramework
 import GlanceCore
 
 class ViewController: UIViewController {
@@ -152,7 +151,6 @@ extension ViewController {
         GlanceVisitor.add(GlanceManager.shared)
         GlanceVisitor.setCustomViewerDelegate(GlanceManager.shared)
         GlanceManager.shared.params = params
-        Glance.setDelegate(self)
         
         DispatchQueue.main.async {
             GlanceCore.setup(self.params)
@@ -178,6 +176,8 @@ final class GlanceManager: NSObject, GlanceVisitorDelegate, SessionUIDelegate, G
             }
         case EventPresenceConnected:
             GlancePresenceVisitor.presence(["url": "root view"])
+        case EventPresenceDisconnected:
+            print("disconnected!")
         case EventPresenceShowTerms:
             self.webSocket.send(message: .terms, data: ["status": "displayed"])
             self.webSocket.send(message: .terms, data: ["status": "accepted"])
@@ -220,104 +220,4 @@ final class GlanceManager: NSObject, GlanceVisitorDelegate, SessionUIDelegate, G
      func glanceViewerDidStop(_ glanceView: UIView) {}
      func glanceViewerIsStopping(_ glanceView: UIView) {}
      func glanceViewerIsStarting(_ glanceView: UIView) {}
-}
-
-extension ViewController: GlanceDelegate {
-    func sessionConnected(dismissAction: (() -> Void)?) {
-        
-    }
-    
-    func presenceConnected(dismissAction: (() -> Void)?) {
-        
-    }
-    
-    func receivedSessionCode(_ sessionCode: String) {
-        
-    }
-    
-    func sessionAgentConnected() {
-        
-    }
-    
-    func onGuestCountChange(guests: [GlanceAgent], response: String?) {
-        
-    }
-    
-    func sessionEnded() {
-        
-    }
-    
-    func receivedVideoCaptureImage(_ image: UIImage) {
-        
-    }
-    
-    func didStartVideoCapture(_ captureSession: AVCaptureSession) {
-        
-    }
-    
-    func didStopVideoCapture(_ captureSession: AVCaptureSession) {
-        
-    }
-    
-    func didStartPreviewVideoCapture(_ captureSession: AVCaptureSession) {
-        
-    }
-    
-    func didStopPreviewVideoCapture(_ captureSession: AVCaptureSession) {
-        
-    }
-    
-    func didPauseVisitorVideo() {
-        
-    }
-    
-    func didStartAgentViewer(_ glanceAgentViewer: UIView) {
-        
-    }
-    
-    func didStopAgentViewer() {
-        
-    }
-    
-    func onUpdateVisibility(to visibility: GlanceFramework.Visibility) {
-        
-    }
-    
-    func onUpdateLocation(to location: GlanceFramework.Location) {
-        
-    }
-    
-    func onUpdateSize(size: String) {
-        
-    }
-    
-    func askForVideoSession(confirmAction: @escaping (() -> Void), cancelAction: (() -> Void)?) {
-        
-    }
-    
-    func agentAskedForVideoSession() {
-        
-    }
-    
-    func onUpdateAgentVideo() {
-        
-    }
-    
-    func initTimeoutExpired() {
-        
-    }
-    
-    func startTimeoutExpired() {
-        
-    }
-    
-    func presenceTimeoutExpired() {
-        
-    }
-    
-    func onError(_ error: GlanceFramework.GlanceError) {
-        
-    }
-    
-    
 }

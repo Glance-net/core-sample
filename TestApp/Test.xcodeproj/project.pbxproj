@@ -8,27 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		BC929A5B2C12355600BD177F /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC929A5A2C12355600BD177F /* WebSocket.swift */; };
-		BC929A5F2C13780100BD177F /* GlanceCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2D531C2C0A0117008929F7 /* GlanceCore.xcframework */; };
-		BC929A602C13780100BD177F /* GlanceCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC2D531C2C0A0117008929F7 /* GlanceCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BC929A612C13780100BD177F /* GlanceFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2D531B2C0A0117008929F7 /* GlanceFramework.xcframework */; };
-		BC929A622C13780100BD177F /* GlanceFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC2D531B2C0A0117008929F7 /* GlanceFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BCB9BFE32AB392880061EC0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9BFE22AB392880061EC0E /* AppDelegate.swift */; };
 		BCB9BFE52AB392880061EC0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9BFE42AB392880061EC0E /* SceneDelegate.swift */; };
 		BCB9BFE72AB392880061EC0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9BFE62AB392880061EC0E /* ViewController.swift */; };
 		BCB9BFEA2AB392880061EC0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB9BFE82AB392880061EC0E /* Main.storyboard */; };
 		BCB9BFEC2AB3928A0061EC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCB9BFEB2AB3928A0061EC0E /* Assets.xcassets */; };
 		BCB9BFEF2AB3928A0061EC0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB9BFED2AB3928A0061EC0E /* LaunchScreen.storyboard */; };
+		C9CA31A02D6521070072487A /* GlanceCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CA319F2D6521070072487A /* GlanceCore.xcframework */; };
+		C9CA31A12D6521070072487A /* GlanceCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9CA319F2D6521070072487A /* GlanceCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BC929A632C13780100BD177F /* Embed Frameworks */ = {
+		C9CA31A22D6521070072487A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BC929A622C13780100BD177F /* GlanceFramework.xcframework in Embed Frameworks */,
-				BC929A602C13780100BD177F /* GlanceCore.xcframework in Embed Frameworks */,
+				C9CA31A12D6521070072487A /* GlanceCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +44,7 @@
 		BCB9BFEB2AB3928A0061EC0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCB9BFEE2AB3928A0061EC0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCB9BFF02AB3928A0061EC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9CA319F2D6521070072487A /* GlanceCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GlanceCore.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC929A612C13780100BD177F /* GlanceFramework.xcframework in Frameworks */,
-				BC929A5F2C13780100BD177F /* GlanceCore.xcframework in Frameworks */,
+				C9CA31A02D6521070072487A /* GlanceCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				BC2D531C2C0A0117008929F7 /* GlanceCore.xcframework */,
+				C9CA319F2D6521070072487A /* GlanceCore.xcframework */,
 				BC2D531B2C0A0117008929F7 /* GlanceFramework.xcframework */,
 			);
 			name = Frameworks;
@@ -113,7 +111,7 @@
 				BCB9BFDB2AB392880061EC0E /* Sources */,
 				BCB9BFDD2AB392880061EC0E /* Resources */,
 				BCB9BFDC2AB392880061EC0E /* Frameworks */,
-				BC929A632C13780100BD177F /* Embed Frameworks */,
+				C9CA31A22D6521070072487A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -329,7 +327,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4XWMMXB4KD;
+				DEVELOPMENT_TEAM = QN674RQN2P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Test",
@@ -363,7 +361,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4XWMMXB4KD;
+				DEVELOPMENT_TEAM = QN674RQN2P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Test",
